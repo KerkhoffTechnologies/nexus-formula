@@ -49,6 +49,7 @@ unpack-nexus-tarball:
     - group: {{ nexus.group }}
     - require:
       - cmd: unpack-nexus-tarball
+      - file: {{ nexus.home }}
 
 {{ nexus.real_home }}/tmp:
   file.directory:
@@ -56,6 +57,7 @@ unpack-nexus-tarball:
     - group: {{ nexus.group }}
     - require:
       - cmd: unpack-nexus-tarball
+      - file: {{ nexus.home }}
 
 {{ nexus.download_dir }}/sonatype_work:
   file.absent
@@ -88,6 +90,7 @@ move-nexus-dist:
     - context:
       nexus_home: {{ nexus.home }}
       nexus_port: {{ nexus.port }}
+      nexus_context_path: {{ nexus.context_path }}
       nexus_workdir: {{ nexus.workdir }}
 
       java_home: {{ java.java_home }}

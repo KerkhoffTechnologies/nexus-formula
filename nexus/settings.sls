@@ -9,7 +9,7 @@
 {%- set host = 'nexus' %}
 {%- endif %}
 
-{%- set version   = g.get('version', p.get('version', '2.8.0')) %}
+{%- set version   = g.get('version', p.get('version', '2.11.4')) %}
 {%- set prefix    = g.get('prefix', p.get('prefix', '/srv/nexus')) %}
 {%- set home      = prefix + '/nexus' %}
 {%- set real_home = home + '-' + version %}
@@ -18,6 +18,7 @@
 {%- set username  = g.get('username', p.get('username', 'nexus')) %}
 {%- set group     = g.get('group', p.get('group', 'nexus')) %}
 {%- set port      = gc.get('port', pc.get('port', '8081')) %}
+{%- set context_path = gc.get('context_path', pc.get('context_path', '/')) %}
 {%- set server_name = gc.get('server_name', pc.get('server_name', grains.get('fqdn'))) %}
 
 {%- set source_url = g.get('source_url', p.get('source-url', 'http://www.sonatype.org/downloads/nexus-' + version + '-bundle.tar.gz')) %}
@@ -29,6 +30,7 @@
                           'piddir'         : piddir,
                           'username'       : username,
                           'group'          : group,
+                          'context_path'   : context_path,
                           'port'           : port,
                           'source_url'     : source_url,
                           'home'           : home,
